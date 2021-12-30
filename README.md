@@ -1,27 +1,38 @@
-# Forms
+Construir os campos dos formulários e associar aos valores dos objetos e como submeter esses valores.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
+Criar uma variável local: #nomedavariável
 
-## Development server
+```jsx
+<form #f="ngForm"> // associar ela a diretiva para que o Angular ajude a gerenciar
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Não esquecer de importar o FormsModule.
 
-## Code scaffolding
+Quando clicarmos no botão de submit, usamos o evento ngSubmit:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```jsx
+<form #f="ngForm" (ngSubmit)="onSubmit(f)"> //f dentro faz referência a esse form
+```
 
-## Build
+No component.ts criamos o método onSubmit.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```jsx
+export class TemplateFormComponent implements OnInit {
 
-## Running unit tests
+  onSubmit(form: any){
+    console.log(form);
+  }
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Para associar cada campo de input do nosso formulário com os valores do ngForm, colocamos uma propriedade name do campo e o ngModel
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```jsx
+<div class="form-group">
+    <label for="nome">Nome</label>
+    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" ngModel>
+  </div>
+  <div class="form-group">
+    <label for="email">E-mail</label>
+    <input type="text" class="form-control" name="email" id="email" placeholder="nome@email.com" ngModel>
+  </div>
+```
