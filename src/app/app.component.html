@@ -1,23 +1,29 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-  <div class="navbar-header">
-  <a class="navbar-brand" routerLink="">Angular Forms</a>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-<ul class="nav navbar-nav">
-  <li routerLinkActive="active">
-    <a routerLink="/templateForm">Form - Template Driven</a>
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item active">
+    <a class="nav-link" href="#">Angular Forms</a>
   </li>
-  <li routerLinkActive="active">
-    <a routerLink="/dataForm">Form - Data Driven</a>
+  <!-- <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li> -->
+
+  <li class="nav-item" routerLinkActive="active">
+    <a class="dropdown-item" routerLink="/templateForm">Form - Template Driven</a>
+  </li>
+  <li class="nav-item" routerLinkActive="active">
+    <a class="dropdown-item" routerLink="/dataForm">Form - Data Driven</a>
+  </li>
+  <li class="nav-item" routerLinkActive="active">
+    <a class="dropdown-item" routerLink="/formPoc">Form - POC</a>
   </li>
 </ul>
 </div>
 
 </nav>
 
-<div class="container">
+<div class="container form-row">
   <router-outlet></router-outlet>
 </div>
