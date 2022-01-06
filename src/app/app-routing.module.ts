@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'templateForm', component: TemplateFormComponent },
   { path: 'dataForm', component: DataFormComponent },
   { path: 'formPoc', component: FormPocComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'templateForm' },
+  { path: '', pathMatch: 'full', redirectTo: 'dataForm' },
 ];
 
 @NgModule({
