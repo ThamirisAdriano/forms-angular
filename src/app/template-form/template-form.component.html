@@ -32,27 +32,23 @@
   <!-- Campos CEP / Número e complemento -->
 
   <div ngModelGroup="endereço">
-  <div class="form-row">
+
+<div class="form-group">
 
     <div class="col-md-3" ngClass="aplicaCssErro(cep)">
       <label for="cep" class="control-label">CEP</label>
       <input type="text" class="form-control" id="cep" name="cep" ngModel required #cep="ngModel"
       (blur)="consultaCep($any($event.target).value, f)">
-      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"
-        *ngIf="!cep.valid && cep.touched"></span>
-      <span class="sr-only" *ngIf="!cep.valid && cep.touched">(error)</span>
-
-      <div *ngIf="!cep.valid && cep.touched" class="alert alert-danger" role="alert">
-        o CEP é obrigatório.
-      </div>
-
+       <app-campo-control-erro [mostrarErro]="verificaValidTouched(cep)"
+          msgErro="CEP é obrigatório">
+          </app-campo-control-erro>
     </div>
+
     <div class="col-md-3" ngClass="aplicaCssErro(numero)">
       <label for="numero" class="control-label">Número</label>
       <input type="text" class="form-control" id="numero" name="numero" ngModel required #numero="ngModel">
       <app-campo-control-erro [mostrarErro]="verificaValidTouched(numero)" msgErro="Número é obrigatório">
       </app-campo-control-erro>
-
     </div>
 
     <div class="col-md-6">
@@ -60,6 +56,7 @@
       <input type="text" class="form-control" id="complemento" name="complemento" ngModel #complemento="ngModel">
     </div>
   </div>
+
 
 
   <div class="form-group" ngClass="aplicaCssErro(rua)">
