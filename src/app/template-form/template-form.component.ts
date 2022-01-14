@@ -47,22 +47,17 @@ export class TemplateFormComponent implements OnInit {
     return {
       'has-error': this.verificaValidTouched(campo),
       'has-feedback': this.verificaValidTouched(campo)
-    };
+    }
   }
 
   consultaCep(cep: any, form: any){
     //Nova variável "cep" somente com dígitos.
     cep = cep.replace(/\D/g, '');
 
-     //Verifica se campo cep possui valor informado.
-     if (cep != "") {
-        //Expressão regular para validar o CEP.
-        var validacep = /^[0-9]{8}$/;
-
-        if (cep != null && cep !== '') {
-          this.cepService.consultaCep(cep)?.subscribe((dados) => this.populaDados(dados, form))
-        }
-  }
+    if (cep != null && cep !== '') {
+      this.cepService.consultaCep(cep)
+      .subscribe(dados => this.populaDados(dados, form));
+    }
 }
 
 populaDados(dados: any, formulario: any){
