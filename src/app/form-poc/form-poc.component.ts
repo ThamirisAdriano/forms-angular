@@ -94,7 +94,7 @@ export class FormPocComponent implements OnInit {
   populaDadosForm(dados: any){
 
     this.formulario.patchValue({
-     endereço: {
+     endereco: {
        rua: dados.logradouro,
        //cep: dados.cep,
        complemento: dados.complemento,
@@ -107,7 +107,7 @@ export class FormPocComponent implements OnInit {
 
   resetaDadosForm(){
     this.formulario.patchValue({
-      endereço: {
+      endereco: {
         rua: null,
         complemento: null,
         bairro: null,

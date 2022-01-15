@@ -112,7 +112,7 @@ export class DataFormComponent implements OnInit {
 
   populaDados(dados: any) {
     this.formulario.patchValue({
-      endereço: {
+      endereco: {
         rua: dados.logradouro,
         //cep: dados.cep,
         complemento: dados.complemento,
@@ -126,7 +126,7 @@ export class DataFormComponent implements OnInit {
 
   resetaDadosForm() {
     this.formulario.patchValue({
-      endereço: {
+      endereco: {
         rua: null,
         complemento: null,
         bairro: null,
