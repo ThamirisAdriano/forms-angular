@@ -4,13 +4,15 @@ import { DataFormComponent } from './data-form/data-form.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TesteComponent } from './teste/teste.component';
 
 const routes: Routes = [
   { path: 'templateForm', component: TemplateFormComponent },
   { path: 'dataForm', component: DataFormComponent },
   { path: 'formPoc', component: FormPocComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'formPoc' },
+  { path: 'teste', component: TesteComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'dataForm' },
 ];
 
 @NgModule({

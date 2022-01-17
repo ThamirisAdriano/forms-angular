@@ -25,7 +25,6 @@
     </div>
   </div>
 
-
   <div formGroupName="endereco">
 
     <div class="form-group row">
@@ -106,8 +105,62 @@
     </div>
   </div>
 
+  <!-- CARGO / TECNOLOGIAS / NEWSLETTER -->
+  <div class="form-group row">
+    <div class="col-md-4" [ngClass]="aplicaCssErro('cargo')">
+      <label class="control-label" for="cargo">Cargo</label>
+
+      <select class="form-select" id="cargo" formControlName="cargo" placeholder="cargo" [compareWith]="compararCargos">
+        <option *ngFor="let cargo of cargos" [ngValue]="cargo"> {{cargo.desc}}
+        </option>
+      </select>
+    </div>
+
+    <!-- TECNOLOGIAS -->
+
+    <div class="col-md-4" [ngClass]="aplicaCssErro('tecnologias')">
+      <label class="control-label" for="tecnologias">Tecnologias</label>
+
+      <select multiple class="form-select" id="tecnologias" formControlName="tecnologias" placeholder="tecnologias">
+        <option  *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome"> {{tecnologia.desc}}
+        </option>
+      </select>
+    </div>
+
+    <!-- NEWSLETTER -->
+
+    <div class="col-md-3 row" [ngClass]="aplicaCssErro('newsletter')">
+      <label class="control-label" for="newsletter">Newsletter</label>
+      <div id="newsletter" class="column">
+
+        <div class="form-check form-check-inline" *ngFor="let item of newsletterOp" >
+          <label class="radio-inline">
+            <input type="radio" [value]="item.valor" class="form-check-input" formControlName="newsletter" /> {{ item.desc }}
+          </label>
+        </div>
+        </div>
+        </div>
+
+    <!-- TERMOS -->
+
+      <div class="form-group">
+        <div class="col-md-3" [ngClass]="aplicaCssErro('termos')">
+          <div class="checkbox">
+            <label class="checkbox-inline">
+              <input type="checkbox" formControlName="termos"> Aceito os termos.
+            </label>
+            <app-campo-control-erro
+          [mostrarErro]="verificaValidTouched('termos')" msgErro="Por favor, aceite os termos.">
+          </app-campo-control-erro>
+          </div>
+        </div>
+      </div>
+
+  </div>
   <button type="submit" class="btn" style="margin-top: 4px; background-color: #F2CA51;">Submit</button>
   <button class="btn" style="background-color: #5B4B81; margin-top: 4px; margin-left: 2px;" (click)="resetar()">Cancel</button>
+  <button class="btn" style="margin-top: 4px; background-color: #F2CA51; margin-left: 2px;" (click)="setarCargo()">Cargo</button>
+  <button class="btn" style="background-color: #5B4B81; margin-top: 4px; margin-left: 2px;" (click)="setarTecnologias()">Tecnologias</button>
 
 </form>
 <app-form-debug [form]="formulario"></app-form-debug>

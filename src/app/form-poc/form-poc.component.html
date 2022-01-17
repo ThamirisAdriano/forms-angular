@@ -1,5 +1,4 @@
 <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
-
   <div class="form-group" [ngClass]="aplicaCssErro('nome')">
 
     <div class="col-sm-12">
@@ -96,15 +95,15 @@
            [mostrarErro]="verificaValidTouched('endereco.cidade')" msgErro="Cidade é obrigatório">
           </app-campo-control-erro>
         </div>
-          <div class="col-md-4" [ngClass]="aplicaCssErro('endereco.estado')">
-            <label for="estado" class="control-label">Estado</label>
-            <input type="text" class="form-control" id="estado"
-            formControlName="estado">
-            <app-campo-control-erro
-            [mostrarErro]="verificaValidTouched('endereco.estado')" msgErro="Estado é obrigatório">
-            </app-campo-control-erro>
-          </div>
+        <div class="col-md-4" [ngClass]="aplicaCssErro('endereco.estado')">
+          <label for="estado" class="control-label">Estado</label>
+          <select class="form-control" id="estado" formControlName="estado">
+            <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
+          </select>
 
+          <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.estado')" msgErro="Estado é obrigatório">
+          </app-campo-control-erro>
+        </div>
         </div>
       </div>
 

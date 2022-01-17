@@ -2,6 +2,9 @@ import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DropdownService } from '../shared/services/dropdown.service';
+import { EstadoBr } from '../shared/models/estado-br';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form-poc',
@@ -11,12 +14,20 @@ import { HttpClient } from '@angular/common/http';
 export class FormPocComponent implements OnInit {
 
   formulario!: FormGroup;
+  estados?: EstadoBr[] | any;
 
   constructor(private formBuilder: FormBuilder,
-    private http: HttpClient
-    ) { }
+    private http: HttpClient,
+    private dropdownService: DropdownService,
+    private cepService: ConsultaCepService) { }
 
   ngOnInit(): void {
+
+
+    this.dropdownService.getEstadosBr()
+    .subscribe(dados => {this.estados = dados; console.log(dados)});
+
+
 
     this.formulario = this.formBuilder.group({
       nome: [null, Validators.required],
@@ -73,22 +84,13 @@ export class FormPocComponent implements OnInit {
   consultaCep(){
 
     let cep = this.formulario.get('endereco.cep')?.value
-    //Nova variável "cep" somente com dígitos.
-    cep = cep.replace(/\D/g, '');
 
-    if (cep !='') {
-
-      var validacep = /^[0-9]{8}$/;
-
-      if(validacep.test(cep)){
-        this.resetaDadosForm();
-
-        this.http.get(`//viacep.com.br/ws/${cep}/json`)
-        .subscribe(dados => this.populaDadosForm(dados));
-
-      }
+    if (cep !=='' && cep != null) {
+      this.cepService.consultaCep(cep)
+      .subscribe(dados => this.populaDadosForm(dados));
 
     }
+
   }
 
   populaDadosForm(dados: any){

@@ -14,8 +14,12 @@ import { Observable } from 'rxjs';
 export class DataFormComponent implements OnInit {
 
   formulario!: FormGroup;
-  //estados?: EstadoBr[] | any;
   estados?: Observable<EstadoBr[]> | any;
+  cargos?: any[];
+  tecnologias?: any[];
+  newsletterOp?: any[];
+
+  frameworks = ['Angular', 'React', 'Vue', 'Sencha'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,7 +32,11 @@ export class DataFormComponent implements OnInit {
 
     this.estados = this.dropdownService.getEstadosBr();
 
-   // this.dropdownService.getEstadosBr().subscribe(dados => {this.estados = dados; console.log(dados)});
+    this.cargos = this.dropdownService.getCargos();
+    this.tecnologias = this.dropdownService.getTecnologias();
+    this.newsletterOp = this.dropdownService.getNewsletter();
+
+    // this.dropdownService.getEstadosBr().subscribe(dados => {this.estados = dados; console.log(dados)});
 
 
     /*this.formulario = new FormGroup({
@@ -39,6 +47,7 @@ export class DataFormComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       nome: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
+
       endereco: this.formBuilder.group({
         cep: [null, Validators.required],
         numero: [null, Validators.required],
@@ -47,7 +56,13 @@ export class DataFormComponent implements OnInit {
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         estado: [null, Validators.required],
-      })
+      }),
+
+      cargo: [null],
+      tecnologias: [null],
+      newsletterOp: [null],
+      termos:[null, Validators.pattern('true')] // utilizamos para validar uma expressão regular
+
     });
 
     //Validators.minLength(3), Validators.maxLength(20)
@@ -135,5 +150,19 @@ export class DataFormComponent implements OnInit {
       }
     });
   }
+
+  setarCargo(){
+    const cargo = {nome: 'Dev', nivel: 'Pleno', desc: 'Dev Pleno'};
+    this.formulario.get('cargo')?.setValue(cargo);
+  }
+
+  compararCargos(obj1: any, obj2: any){
+    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel && obj2.nivel): obj1 && obj2;
+  }
+
+  setarTecnologias(){
+    this.formulario.get('tecnologias')?.setValue(['java', 'python', 'flutter'])
+  }
+
 
 }
