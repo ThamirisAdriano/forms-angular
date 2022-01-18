@@ -36,6 +36,9 @@
         <app-campo-control-erro
          [mostrarErro]="verificaValidTouched('endereco.cep')" msgErro="CEP obrigatório">
         </app-campo-control-erro>
+        <!-- <app-campo-control-erro
+         [mostrarErro]="formulario.get('endereco.cep').hasError('cepInvalido')" msgErro="CEP inválido">
+        </app-campo-control-erro> -->
 
       </div>
 
@@ -141,10 +144,27 @@
         </div>
         </div>
 
-    <!-- TERMOS -->
+      <!-- FRAMEWORKS -->
 
-      <div class="form-group">
-        <div class="col-md-3" [ngClass]="aplicaCssErro('termos')">
+      <div class="form-group row">
+        <div class="col-md-4" [ngClass]="aplicaCssErro('frameworks')">
+          <label class="label font-weight-bold">Frameworks</label>
+          <div class="row">
+            <div class="checkbox col-md-4" formArrayName="frameworks"
+              *ngFor="let item of getFrameworksControls(); let i = index">
+              <label [for]="frameworks[i]" class="checkbox-inline">
+                <input [id]="frameworks[i]" type="checkbox" [formControlName]="i"> {{ frameworks[i] }}
+              </label>
+
+            </div>
+            <app-campo-control-erro [mostrarErro]="verificaValidTouched('frameworks')" msgErro="Por favor, selecione ao menos uma opção.">
+            </app-campo-control-erro>
+          </div>
+        </div>
+
+            <!-- TERMOS -->
+
+        <div class="col-md-3" [ngClass]="aplicaCssErro('termos')" style="margin-top: 10px;">
           <div class="checkbox">
             <label class="checkbox-inline">
               <input type="checkbox" formControlName="termos"> Aceito os termos.
@@ -154,13 +174,17 @@
           </app-campo-control-erro>
           </div>
         </div>
-      </div>
+
+
+        </div>
+
 
   </div>
-  <button type="submit" class="btn" style="margin-top: 4px; background-color: #F2CA51;">Submit</button>
-  <button class="btn" style="background-color: #5B4B81; margin-top: 4px; margin-left: 2px;" (click)="resetar()">Cancel</button>
-  <button class="btn" style="margin-top: 4px; background-color: #F2CA51; margin-left: 2px;" (click)="setarCargo()">Cargo</button>
-  <button class="btn" style="background-color: #5B4B81; margin-top: 4px; margin-left: 2px;" (click)="setarTecnologias()">Tecnologias</button>
+  <!-- BUTTONS -->
+  <button type="submit" class="btn" style="margin-top: 8px; background-color: #F2CA51;">Submit</button>
+  <button class="btn" style="background-color: #5B4B81; margin-top: 8px; margin-left: 2px;" (click)="resetar()">Cancel</button>
+  <button class="btn" style="margin-top: 8px; background-color: #F2CA51; margin-left: 2px;" (click)="setarCargo()">Cargo</button>
+  <button class="btn" style="background-color: #5B4B81; margin-top: 8px; margin-left: 2px;" (click)="setarTecnologias()">Tecnologias</button>
 
 </form>
 <app-form-debug [form]="formulario"></app-form-debug>
