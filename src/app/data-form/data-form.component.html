@@ -7,8 +7,8 @@
 
     <div class="col-sm-12">
       <input type="text" class="form-control" formControlName="nome" id="nome" placeholder="Nome">
-      <app-campo-control-erro [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório">
-      </app-campo-control-erro>
+      <app-error-msg [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório">
+      </app-error-msg>
     </div>
   </div>
 
@@ -22,6 +22,33 @@
       <app-campo-control-erro
       [mostrarErro]="verificaValidTouched('email')" msgErro="E-mail é obrigatório">
       </app-campo-control-erro>
+
+      <!-- <app-campo-control-erro
+      [mostrarErro]="formulario.get('email').status === 'PEENDING'" msgErro="Validando E-mail.">
+      </app-campo-control-erro>
+
+      <app-campo-control-erro
+      [mostrarErro]="formulario.get('email').status === 'VALID'" msgErro="E-mail válido.">
+      </app-campo-control-erro>
+
+      <app-campo-control-erro
+      [mostrarErro]="formulario.get('email').hasError('emailInvalido')" msgErro="E-mail já cadastrado.">
+      </app-campo-control-erro> -->
+
+    </div>
+  </div>
+
+  <div class="form-group" [ngClass]="aplicaCssErro('confirmarEmail')">
+
+    <div class="col-sm-12">
+      <label for="confirmarEmail" class="control-label">Confirmar e-mail</label>
+    </div>
+    <div class="col-sm-12">
+      <input type="text" class="form-control" formControlName="confirmarEmail" id="confirmarEmail" placeholder="nome@email.com">
+      <!-- <app-campo-control-erro
+      [mostrarErro]="formulario.get('confirmarEmail').hasError('equalTo')"
+      msgErro="E-mails não são iguais.">
+      </app-campo-control-erro> -->
     </div>
   </div>
 
