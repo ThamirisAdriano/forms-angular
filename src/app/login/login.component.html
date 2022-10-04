@@ -1,8 +1,30 @@
+<section>
 
-<div class="wrapper">
+<article>
+  <h3>Class e Style Binding</h3>
+  <div>
+    Selecione uma classe
+    <select #classe (change) = "0">
+      <option value="">Sucesso</option>
+      <option value="">Info</option>
+      <option value="">Alerta</option>
+      <option value="">Erro</option>
+    </select>
+    <br><br>
+    <div class="alert" role="alert"
+    [class.alert-succes]="classe.value == 'alert-succes'">
+    Sucesso</div>
+    <div class="alert" role="alert"
+    [class.alert-info]="classe.value == 'alert-info'">
+    Info</div>
+    <div class="alert" role="alert"
+    [class.alert-warning]="classe.value == 'alert-warning'">
+    Alerta</div>
+    <div class="alert" role="alert"
+    [class.alert-danger]="classe.value == 'alert-danger'">
+    Erro</div>
 
-  <div class="card">
-<h1>Bla bla bla</h1>
 
   </div>
-</div>
+</article>
+</section>
